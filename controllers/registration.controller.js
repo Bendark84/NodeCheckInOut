@@ -14,6 +14,29 @@ const getAllRegistration = async (req, res) => {
   }
 };
 
+const getOneRegistration = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const register = await Registration.findOne({ where: { id } });
+
+    if (!register) {
+      return res.status(404).json({
+        status: 'error',
+        message: 'Register not found',
+      });
+    }
+
+    res.status(200).json({
+      status: 'success',
+      data: {
+        register,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const createRegistration = async (req, res) => {
   try {
     const { entranceTime } = req.body;
@@ -78,6 +101,7 @@ const deleteRegistration = async (req, res) => {
 
 module.exports = {
   getAllRegistration,
+  getOneRegistration,
   createRegistration,
   updateRegistration,
   deleteRegistration,

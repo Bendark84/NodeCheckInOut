@@ -4,6 +4,7 @@ const express = require('express');
 
 const {
   getAllRegistration,
+  getOneRegistration,
   createRegistration,
   updateRegistration,
   deleteRegistration,
@@ -12,6 +13,7 @@ const {
 const registrationRouter = express.Router();
 
 registrationRouter.get('/', getAllRegistration);
+registrationRouter.get('/:id', getOneRegistration);
 registrationRouter.post('/', createRegistration);
 registrationRouter.patch('/:id', updateRegistration);
 registrationRouter.delete('/:id', deleteRegistration);
